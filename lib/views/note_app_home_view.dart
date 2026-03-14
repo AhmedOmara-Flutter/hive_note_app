@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_note_app/views/custom_appbar.dart';
+import 'package:hive_note_app/views/notes_item.dart';
 
 class NoteAppHomeView extends StatelessWidget {
   const NoteAppHomeView({super.key});
@@ -10,8 +11,9 @@ class NoteAppHomeView extends StatelessWidget {
       body:SafeArea(
         child: Column(
           children: [
-            CustomAppbar()
-        
+            CustomAppbar(),
+            NotesItem()
+
           ],
         ),
       ),
