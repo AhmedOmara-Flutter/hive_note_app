@@ -18,8 +18,6 @@ class EditNotesAppView extends StatelessWidget {
             SizedBox(height: 20,),
             CustomTextFormField(hintText: 'Content', maxLines: 6,),
             SizedBox(height: 20,),
-
-
           ],
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hive_note_app/views/widgets/custom_text_form_field.dart';
+import 'package:hive_note_app/views/widgets/add_note_form.dart';
 
 class BuildModalBottomSheet extends StatelessWidget {
   const BuildModalBottomSheet({super.key});
@@ -15,27 +15,7 @@ class BuildModalBottomSheet extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CustomTextFormField(hintText: 'Title',),
-            SizedBox(height: 20,),
-            CustomTextFormField(hintText: 'Content', maxLines: 6,),
-            SizedBox(height: 20,),
-            ElevatedButton(onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: Text('Add',
-                  style: TextStyle(fontSize: 18, color: Colors.white),))
-          ],
-        ),
-      ),
+      child: AddNoteForm(),
     );
   }
 }

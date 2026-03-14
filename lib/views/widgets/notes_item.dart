@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_note_app/views/widgets/edit_notes_app_view.dart';
+import '../../models/note_item_model.dart';
 
 class NotesItem extends StatelessWidget {
-  const NotesItem({super.key});
+  const NotesItem({super.key, required this.noteItemModel});
+
+  final NoteItemModel noteItemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +29,9 @@ class NotesItem extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Expanded(
+                Expanded(
                   child: Text(
-                    'Flutter Tips',
+                    noteItemModel.title ,
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w500,
@@ -47,8 +50,8 @@ class NotesItem extends StatelessWidget {
             const SizedBox(height: 16),
             SizedBox(
               width: MediaQuery.of(context).size.width / 2,
-              child: const Text(
-                'Build your career with tharwat samy',
+              child:  Text(
+                noteItemModel.subTitle,
                 style: TextStyle(
                   fontSize: 20,
                   color: Color(0xFF9E7B4D),
@@ -57,10 +60,10 @@ class NotesItem extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            const Align(
+             Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                'May 21,2022',
+                noteItemModel.date,
                 style: TextStyle(fontSize: 16, color: Color(0xFF9E7B4D)),
               ),
             ),
