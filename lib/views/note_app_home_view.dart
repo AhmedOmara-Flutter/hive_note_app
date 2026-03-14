@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_note_app/views/build_modal_bottom_sheet.dart';
 import 'package:hive_note_app/views/custom_appbar.dart';
 import 'package:hive_note_app/views/notes_item.dart';
 
@@ -9,7 +10,20 @@ class NoteAppHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+
+
+            ),
+            context: context,
+            builder: (context) => BuildModalBottomSheet(),
+          );
+        },
         shape: CircleBorder(),
         backgroundColor: Colors.grey.shade800,
         child: Icon(
@@ -30,3 +44,5 @@ class NoteAppHomeView extends StatelessWidget {
     );
   }
 }
+
+
