@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hive_note_app/views/note_app_home_view.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
 
 
 class MyApp extends StatelessWidget {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(),
+      home: NoteAppHomeView(),
     );
   }
 }
