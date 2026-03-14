@@ -8,6 +8,15 @@ class NoteAppHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        shape: CircleBorder(),
+        backgroundColor: Colors.grey.shade800,
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: CustomAppbar()),
