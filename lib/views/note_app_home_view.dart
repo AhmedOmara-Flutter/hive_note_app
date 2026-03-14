@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_note_app/views/widgets/build_floating_action_button.dart';
-import 'package:hive_note_app/views/widgets/build_modal_bottom_sheet.dart';
 import 'package:hive_note_app/views/widgets/custom_appbar.dart';
 import 'package:hive_note_app/views/widgets/notes_item.dart';
 
