@@ -4,11 +4,12 @@ class CustomTextFormField extends StatelessWidget {
   final String? hintText;
   final int maxLines;
   final void Function(String?)? onSaved;
-  final AutovalidateMode? autoValidateMode;
+  final TextEditingController? controller;
+
 
 
   const CustomTextFormField(
-      {super.key, this.hintText, this.maxLines = 1, this.onSaved, this.autoValidateMode});
+      {super.key, this.hintText, this.maxLines = 1, this.onSaved, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CustomTextFormField extends StatelessWidget {
         }
       },
       onSaved: onSaved,
-      autovalidateMode: autoValidateMode,
+      controller: controller,
       cursorColor:  Colors.blue,
       style: TextStyle(color: Colors.white),
       maxLines: maxLines,

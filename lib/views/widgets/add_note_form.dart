@@ -10,6 +10,8 @@ class AddNoteForm extends StatefulWidget {
 
 class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
   String? title;
@@ -26,6 +28,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           children: [
             CustomTextFormField(
               hintText: 'Title',
+              controller: _titleController,
               onSaved: (value) {
                 title = value;
               },
@@ -33,6 +36,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             SizedBox(height: 20),
             CustomTextFormField(
               hintText: 'Content',
+              controller: _contentController,
               maxLines: 6,
               onSaved: (value) {
                 content = value;
@@ -43,7 +47,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-
+                  _contentController.clear();
+                  _titleController.clear();
+                  Navigator.pop(context);
                 }else{
                   setState(() {
                     autoValidateMode = AutovalidateMode.always;
@@ -66,5 +72,13 @@ class _AddNoteFormState extends State<AddNoteForm> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
   }
 }
