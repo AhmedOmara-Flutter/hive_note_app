@@ -6,7 +6,8 @@ class CustomAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
+      padding: EdgeInsetsGeometry.only(
+          top: 50, left: 20, right: 20, bottom: 20),
       child: Row(
         children: [
           Text('Notes',style:TextStyle(

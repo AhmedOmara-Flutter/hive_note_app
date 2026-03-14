@@ -8,14 +8,15 @@ class NoteAppHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:SafeArea(
-        child: Column(
-          children: [
-            CustomAppbar(),
-            NotesItem()
-
-          ],
-        ),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: CustomAppbar()),
+          SliverList.separated(
+            itemBuilder: (context, index) => NotesItem(),
+            separatorBuilder: (context, index) => SizedBox(height: 10),
+            itemCount: 10,
+          ),
+        ],
       ),
     );
   }
