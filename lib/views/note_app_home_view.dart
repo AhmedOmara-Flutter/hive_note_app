@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hive_note_app/views/build_modal_bottom_sheet.dart';
-import 'package:hive_note_app/views/custom_appbar.dart';
-import 'package:hive_note_app/views/notes_item.dart';
+import 'package:hive_note_app/views/widgets/build_floating_action_button.dart';
+import 'package:hive_note_app/views/widgets/build_modal_bottom_sheet.dart';
+import 'package:hive_note_app/views/widgets/custom_appbar.dart';
+import 'package:hive_note_app/views/widgets/notes_item.dart';
 
 class NoteAppHomeView extends StatelessWidget {
   const NoteAppHomeView({super.key});
@@ -9,31 +10,14 @@ class NoteAppHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-
-
-            ),
-            context: context,
-            builder: (context) => BuildModalBottomSheet(),
-          );
-        },
-        shape: CircleBorder(),
-        backgroundColor: Colors.grey.shade800,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-      ),
+      floatingActionButton: BuildFloatingActionButton(),
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: CustomAppbar()),
+          SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CustomAppbar(label: 'Notes', icon: Icons.search,),
+              )),
           SliverList.separated(
             itemBuilder: (context, index) => NotesItem(),
             separatorBuilder: (context, index) => SizedBox(height: 10),

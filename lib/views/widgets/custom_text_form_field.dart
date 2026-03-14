@@ -9,11 +9,10 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor:  Color(0xFF9E7B4D),
+      cursorColor:  Colors.blue,
       style: TextStyle(color: Colors.white),
       maxLines: maxLines,
       decoration: InputDecoration(
-
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.white),
         border: OutlineInputBorder(
@@ -22,7 +21,7 @@ class CustomTextFormField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color:  Color(0xFF9E7B4D), width: 1),
+          borderSide: BorderSide(color:  Colors.blue, width: 1),
         ),
       ),
     );
