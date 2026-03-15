@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_note_app/views/utils/utils.dart';
 import 'package:hive_note_app/views/widgets/edit_notes_app_view.dart';
 import '../../models/note_item_model.dart';
 
@@ -17,7 +18,7 @@ class NotesItem extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
+        margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: const Color(0xFFF4C978),
@@ -63,7 +64,7 @@ class NotesItem extends StatelessWidget {
              Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                noteItemModel.date,
+                Utils.formateDate(noteItemModel.date),
                 style: TextStyle(fontSize: 16, color: Color(0xFF9E7B4D)),
               ),
             ),

@@ -5,7 +5,7 @@ import 'package:hive_note_app/cubit/add_note_cubit.dart';
 import 'package:hive_note_app/cubit/simple_bloc_observer.dart';
 import 'package:hive_note_app/models/note_item_model.dart';
 import 'package:hive_note_app/views/note_app_home_view.dart';
-import 'package:hive_note_app/views/widgets/constants.dart';
+import 'package:hive_note_app/views/utils/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AddNoteCubit()..getNote()),
+        BlocProvider(create: (context) => AddNoteCubit()),
       ],
       child: MaterialApp(
         theme: ThemeData(),
