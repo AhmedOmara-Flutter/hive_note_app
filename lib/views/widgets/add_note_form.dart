@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_note_app/cubit/add_note_cubit.dart';
+import 'package:hive_note_app/models/note_item_model.dart';
+import 'package:hive_note_app/views/widgets/custom_button.dart';
 import 'package:hive_note_app/views/widgets/custom_text_form_field.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -13,9 +17,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-
-  String? title;
-  String? content;
+  String? title, content;
 
   @override
   Widget build(BuildContext context) {
@@ -43,31 +45,28 @@ class _AddNoteFormState extends State<AddNoteForm> {
               },
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  _contentController.clear();
-                  _titleController.clear();
-                  Navigator.pop(context);
-                }else{
-                  setState(() {
-                    autoValidateMode = AutovalidateMode.always;
-                  });
-                }
+            BlocBuilder<AddNoteCubit, AddNoteState>(
+              builder: (context, state) {
+                return CustomButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      AddNoteCubit.get(context).addNote(
+                          NoteItemModel(title: title.toString(),
+                              subTitle: content.toString(),
+                              color: 1,
+                              date: DateTime.now().toString()));
+                      _contentController.clear();
+                      _titleController.clear();
+                    } else {
+                      setState(() {
+                        autoValidateMode = AutovalidateMode.always;
+                      });
+                    }
+                  }, isLoading: state is AddNoteLoading ? true : false,
+                );
               },
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Text(
-                'Add',
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-            ),
+            )
           ],
         ),
       ),
