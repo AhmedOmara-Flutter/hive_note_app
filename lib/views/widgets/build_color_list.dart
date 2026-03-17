@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_note_app/views/widgets/build_color_item.dart';
 
+import '../../cubit/add_note_cubit.dart';
+
 class BuildColorList extends StatefulWidget {
   const BuildColorList({super.key});
 
@@ -30,6 +32,8 @@ class _BuildColorListState extends State<BuildColorList> {
           onTap: () {
             setState(() {
               currentIndex = index;
+              AddNoteCubit.get(context).color=kNoteColors[index];
+
             });
           },
           child: BuildColorItem(color:kNoteColors[index],isActive:index == currentIndex ? true : false,),

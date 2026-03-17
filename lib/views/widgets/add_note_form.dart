@@ -48,7 +48,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
             SizedBox(height: 15),
            BuildColorList(),
             SizedBox(height: 15),
-
             BlocBuilder<AddNoteCubit, AddNoteState>(
               builder: (context, state) {
                 return CustomButton(
@@ -58,7 +57,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       AddNoteCubit.get(context).addNote(
                           NoteItemModel(title: title.toString(),
                               subTitle: content.toString(),
-                              color: 1,
+                              color: AddNoteCubit.get(context).color.value,
                               date: DateTime.now().toString()));
                       _contentController.clear();
                       _titleController.clear();
