@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_note_app/models/note_item_model.dart';
+import 'package:hive_note_app/views/widgets/build_color_list.dart';
 import 'package:hive_note_app/views/widgets/custom_appbar.dart';
 import 'package:hive_note_app/views/widgets/custom_text_form_field.dart';
-
+import '../../cubit/add_note_cubit.dart';
 import '../../cubit/get_note_cubit.dart';
 import '../utils/constants.dart';
 
@@ -31,6 +32,8 @@ class _EditNotesAppViewState extends State<EditNotesAppView> {
             CustomAppbar(label: 'Edit Note', icon: Icons.done, onTap: () async {
                widget.noteItemModel.title=title ?? widget.noteItemModel.title;
                widget.noteItemModel.subTitle=content ?? widget.noteItemModel.subTitle;
+               widget.noteItemModel.color=BlocProvider.of<AddNoteCubit>(context).color.value;
+
               await Hive.box<NoteItemModel>(Constants.kNoteBox).putAt(
                   widget.index,
                   NoteItemModel(
@@ -60,6 +63,7 @@ class _EditNotesAppViewState extends State<EditNotesAppView> {
               },
             ),
             SizedBox(height: 20,),
+            BuildColorList(),
           ],
         ),
       ),

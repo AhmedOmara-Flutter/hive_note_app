@@ -12,7 +12,7 @@ class BuildColorItem extends StatelessWidget {
     return isActive
         ? CircleAvatar(
             radius: 28,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.black.withOpacity(0.3),
             child: CircleAvatar(radius: 24, backgroundColor: color),
           )
         : CircleAvatar(radius: 28, backgroundColor:color);
