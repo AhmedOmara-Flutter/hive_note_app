@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_note_app/cubit/add_note_cubit.dart';
 import 'package:hive_note_app/models/note_item_model.dart';
+import 'package:hive_note_app/views/widgets/build_color_list.dart';
 import 'package:hive_note_app/views/widgets/custom_button.dart';
 import 'package:hive_note_app/views/widgets/custom_text_form_field.dart';
 
@@ -44,7 +45,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 content = value;
               },
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
+           BuildColorList(),
+            SizedBox(height: 15),
+
             BlocBuilder<AddNoteCubit, AddNoteState>(
               builder: (context, state) {
                 return CustomButton(
@@ -66,7 +70,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   }, isLoading: state is AddNoteLoading ? true : false,
                 );
               },
-            )
+            ),
           ],
         ),
       ),
@@ -80,4 +84,5 @@ class _AddNoteFormState extends State<AddNoteForm> {
     _contentController.dispose();
     super.dispose();
   }
+
 }
