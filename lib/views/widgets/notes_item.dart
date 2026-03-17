@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:hive_note_app/views/utils/utils.dart';
 import 'package:hive_note_app/views/widgets/edit_notes_app_view.dart';
+
+import '../../cubit/get_note_cubit.dart';
 import '../../models/note_item_model.dart';
+import '../utils/constants.dart';
 
 class NotesItem extends StatelessWidget {
-  const NotesItem({super.key, required this.noteItemModel});
+  const NotesItem(
+      {super.key, required this.noteItemModel, required this.index});
 
+  final int index;
   final NoteItemModel noteItemModel;
 
   @override
@@ -14,7 +21,7 @@ class NotesItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => EditNotesAppView()),
+          MaterialPageRoute(builder: (context) => EditNotesAppView(noteItemModel:noteItemModel,index: index,)),
         );
       },
       child: Container(
@@ -41,7 +48,10 @@ class NotesItem extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Hive.box<NoteItemModel>(Constants.kNoteBox).deleteAt(index);
+                    BlocProvider.of<GetNoteCubit>(context).getNote();
+                  },
                   icon: const Icon(Icons.delete, color: Colors.black, size: 28),
                   padding: EdgeInsets.all(10),
                   constraints: const BoxConstraints(),

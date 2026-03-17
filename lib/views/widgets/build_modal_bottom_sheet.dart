@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_note_app/cubit/add_note_cubit.dart';
+import 'package:hive_note_app/cubit/get_note_cubit.dart';
 import 'package:hive_note_app/views/widgets/add_note_form.dart';
 
 class BuildModalBottomSheet extends StatelessWidget {
@@ -21,6 +22,7 @@ class BuildModalBottomSheet extends StatelessWidget {
         listener: (context, state) {
           if (state is AddNoteSuccess) {
             Navigator.pop(context);
+            BlocProvider.of<GetNoteCubit>(context).getNote();
           }
           if (state is AddNoteFailure) {
             ScaffoldMessenger.of(context).showSnackBar(

@@ -4,6 +4,10 @@ import 'package:flutter/widgets.dart';
 
 class Assets {
   Assets._();
+
+  static const AssetGenImage emptyFolder = AssetGenImage(
+    'images/empty-folder.png',
+  );
 }
 
 class AssetGenImage {

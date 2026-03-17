@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class CustomAppbar extends StatelessWidget {
   final String label;
   final IconData icon;
+  final Function()? onTap;
 
-  const CustomAppbar({super.key, required this.label, required this.icon});
+
+  const CustomAppbar({super.key, required this.label, required this.icon, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,16 @@ class CustomAppbar extends StatelessWidget {
             fontWeight: FontWeight.bold
           ),),
           Spacer(),
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade300,
-              shape: BoxShape.circle
+          GestureDetector(
+            onTap: onTap,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade300,
+                shape: BoxShape.circle
+              ),
+              child:Icon(icon),
             ),
-            child:Icon(icon),
           )
         ],
       ),
